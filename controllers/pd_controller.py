@@ -9,5 +9,9 @@ class PDDecentralizedController(Controller):
 
     def calculate_control(self, q, q_dot, q_d, q_d_dot, q_d_ddot):
         ### TODO: Please implement me
-        u = None
+        e = q_d - q
+        e_dot = q_d_dot - q_dot
+        Kd = np.array([[25, 0], [0, 15]])
+        Kp = np.array([[25, 0], [0, 60]])
+        u = Kd @ e_dot + Kp @ e
         return u
